@@ -1,4 +1,15 @@
-# 验证项目
+# 尝试使用项
+
+- eslint
+- stylelint
+- scss 
+- typescript 
+- jotai
+- vite
+- react v19
+- react-router v7
+
+## 验证项目
 
 - 尝试用一下 react19 React.use
 - js,css,image 生成物分离，使用 CDN 访问
