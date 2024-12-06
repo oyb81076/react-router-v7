@@ -1,0 +1,13 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-clean-order"],
+  "plugins": ["stylelint-scss"],
+  "ignoreFiles": ["node_modules", "**/build", "**/dist"],
+  "rules": {
+    "rule-empty-line-before": null,
+    "at-rule-no-unknown": [true, { "ignoreAtRules": ["for"] }],
+    "import-notation": null,
+    "no-descending-specificity": null,
+    "selector-class-pattern": null
+  },
+  "overrides": [{ "files": ["**/*.scss"], "customSyntax": "postcss-scss" }]
+}

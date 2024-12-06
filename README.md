@@ -1,3 +1,19 @@
+# 验证项目
+
+- 尝试用一下 react19 React.use
+- js,css,image 生成物分离，使用 CDN 访问
+- @react-router/fs-routes 使用这个配置大于约定的东西, 或者自己写一份
+- jotai 和 clientLoader 可以结合
+- permissons 鉴权 (可以放在 clientLoader 中, 与 jotai 合并)
+- 页面跳转刷新的 loading 界面
+- 表单提交
+  - router.action 和 antd.Form 结合
+  - 表单提交的时候的 loading 界面
+- 分页
+  - 页面 params 参数更新
+  - 无刷新更新
+  - 页面加载的时候 table.loading
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.
