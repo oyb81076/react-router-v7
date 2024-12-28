@@ -1,5 +1,13 @@
 import { atom } from 'jotai';
 
-import { getUserSession } from '~/apis/sessionApi';
+import { getUserSession, UserSession } from '~/apis/sessionApi';
 
-export const sessionAtom = atom(getUserSession);
+const wrap = atom<{ data: UserSession | null } | null>(null);
+
+export const sessionAtom = atom((get) => {
+  const s = get(wrap);
+  if (s) return s.data;
+  return getUserSession();
+}, (_, set, data: UserSession | null) => {
+  set(wrap, { data });
+});

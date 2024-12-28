@@ -1,20 +1,25 @@
 import { Button, Form, Input } from 'antd';
-import { useSubmit } from 'react-router';
+import { getDefaultStore } from 'jotai';
+import { redirect, useSubmit } from 'react-router';
 
 import { Route } from './+types/sign-in';
 
+import { UserSession } from '~/apis/sessionApi';
+import { sessionAtom } from '~/states/session';
 import sleep from '~/utils/sleep';
 
 export async function clientAction({ request }: Route.ActionArgs) {
   console.log('run in client');
   console.log(request.url);
-  const json = await request.json();
+  const json = await request.json() as { username: string };
   console.log('do json', json);
   await sleep();
-  return { done: 'just do it' };
+  const output: UserSession = { id: 'newid', name: json.username, root: true };
+  getDefaultStore().set(sessionAtom, output);
+  return redirect('/');
 }
 
-export default function SignIn({ actionData }: Route.ComponentProps) {
+export default function SignIn({ }: Route.ComponentProps) {
   const submit = useSubmit();
   return (
     <div style={{ width: 300 }}>
@@ -32,7 +37,6 @@ export default function SignIn({ actionData }: Route.ComponentProps) {
         </Form.Item>
         <Button htmlType="submit">提交</Button>
       </Form>
-      {actionData && actionData.done}
     </div>
   );
 }

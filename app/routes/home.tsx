@@ -1,4 +1,5 @@
-import { useAtomValue } from 'jotai';
+import { Button } from 'antd';
+import { useAtom } from 'jotai';
 import { Link } from 'react-router';
 
 import type { Route } from './+types/home';
@@ -17,12 +18,17 @@ export const meta: Route.MetaFunction = ({ data }) => {
 };
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const session = useAtomValue(sessionAtom);
+  const [session, setSession] = useAtom(sessionAtom);
   return (
     <main>
       <h1>{loaderData.title}</h1>
-      <h5>hello: {session.name}</h5>
-      <Link to="/sign/sign-in">Sign in</Link>
+      <h5>hello: {session?.name}</h5>
+      <div>
+        <Link to="/sign/sign-in">
+          <Button type="primary">Sign in</Button>
+        </Link>
+        <Button onClick={() => setSession(null)}>Sign out</Button>
+      </div>
       <ul>
         <li>
           <a href="https://reactrouter.com/docs" target="_blank" rel="noreferrer">React Router Docs</a>
